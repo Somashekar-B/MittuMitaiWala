@@ -21,6 +21,8 @@ from django.conf import settings
 from store import views as store_views
 
 from django.conf.urls.static import static
+from django.conf.urls import url
+from django.views.static import serve
 
 
 urlpatterns = [
@@ -35,7 +37,10 @@ urlpatterns = [
     path('cart/', include('cart.urls')),
     path('register/', user_views.register,name='register'),
     path('profile/', user_views.profile, name='profile'),
-    path('about/', store_views.about, name='about')
+    path('about/', store_views.about, name='about'),
+
+    url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
+    url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
 ]
 
 
