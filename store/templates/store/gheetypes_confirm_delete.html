@@ -1,0 +1,105 @@
+{% extends 'store/admin_pages_base.html' %}
+{% load crispy_forms_tags %}
+
+{%block content%}
+<div class="operations">
+        <div class="list-group list-group-flush">
+            <a href="{% url 'profile' %}" class="list-group-item list-group-item-action active">Profile</a>
+            <a href="{% url 'new-type' %}" class="list-group-item list-group-item-action">Add New Sweet Type</a>
+            <a href="{% url 'new-sweet' %}" class="list-group-item list-group-item-action">Add New Sweet</a>
+            <a href="{% url 'new-oil' %}" class="list-group-item list-group-item-action">Add New Oil Type</a>
+            <a href="{% url 'new-ghee' %}" class="list-group-item list-group-item-action">Add New Ghee Type</a>
+
+            <div class="btn-group dropright">
+                <button type="button" class="btn">
+                    View Items
+                </button>
+                <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                    <span class="sr-only">Toggle Dropright</span>
+                </button>
+                <div class="dropdown-menu">
+                    <a class="list-group-item-action dropdown-item" href="{% url 'type-all' %}">Sweet Types</a>
+                    <a class="list-group-item-action dropdown-item" href="{% url 'sweet-all' %}">Sweets</a>
+                    <a class="list-group-item-action dropdown-item" href="{% url 'oil-all' %}">Oil Types</a>
+                    <a class="list-group-item-action dropdown-item active" href="{% url 'ghee-all' %}">Ghee Types</a>
+                    <a class="list-group-item-action dropdown-item" href="{% url 'items-all' %}">All Items</a>
+                </div>
+            </div>
+            <a href="{% url 'items-table' %}" class="list-group-item list-group-item-action">Items Table</a>
+            <a href="{% url 'due-list' %}" class="list-group-item list-group-item-action">Due Orders</a>
+            <a href="{% url 'deliver-list' %}" class="list-group-item list-group-item-action">Delivered Orders</a>
+            <a href="{% url 'cancelled-orders' %}" class="list-group-item list-group-item-action">Cancelled Orders</a>
+        </div>
+    </div>
+
+    <!-- Profile Part -->
+    <div class="content">
+        <form method="post" enctype="multipart/form-data">
+                {%csrf_token%}
+                <fieldset class="form-group">
+                    <legend class="border-bottom pt-3 mb-4">Delete Ghee Category</legend>
+                    <h3>Are you sure to delete Ghee Category {{object.ghee_name}}</h3>
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn btn-danger" type="submit">Yes, Delete</button>
+                    <a class="btn btn-success" href="{% url 'ghee-all' %}">No! Cancel</a>
+                </div>
+        </form>
+    </div>
+
+
+
+<style>
+   button a,button a:hover{
+        color: white;
+    }
+        .content{
+        flex: 7;
+        margin: 10px 20px;
+        background: white;
+    }
+
+
+span i{
+    padding: 3px 10px;
+    border: 1px solid black;
+}
+.navi{
+    margin-top:40px;
+    display: none;
+    z-index: 10;
+}
+
+@media screen and (max-width:800px){
+        .content-section{
+            display: block;
+        }
+        .sidenav {padding-top: 15px;}
+        .sidenav a {font-size: 18px;}
+        .navi{
+            display: block;
+        }
+        .operations{
+            display: none;
+        }
+        .media{
+            display: block;
+        }
+        .profile{
+            margin-top:40px;
+        }
+        .btn-group{
+            color:white;
+            margin: 8px 8px 8px 32px;
+        }
+        .dropdown-menu{
+            background-color: rgb(43, 43, 43);
+        }
+}
+
+
+</style>
+
+{%endblock content%}
+

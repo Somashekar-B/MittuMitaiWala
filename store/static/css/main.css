@@ -1,0 +1,220 @@
+*{
+    font-family: 'Times New Roman', Times, serif;
+
+}
+html{
+    scroll-behavior: smooth;
+
+  }
+body{
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    width: auto;
+    animation: animate 75s ease-in-out infinite;
+
+}
+
+
+@keyframes animate{
+    0%,100%{
+        background: linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3)), url(../images/img1.jpg);
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        width: auto;
+        position: absolute;
+        z-index: -1;
+    }
+    10%{
+        background: linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3)), url(../images/img2.jpg);
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        width: auto;
+        position: absolute;
+        z-index: -1;
+    }
+    20%{
+        background: linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3)), url(../images/img3.jpg);
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        width: auto;
+        position: absolute;
+        z-index: -1;
+    }
+    30%{
+        background: linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3)), url(../images/img4.jpg);
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        width: auto;
+        position: absolute;
+        z-index: -1;
+    }
+    40%{
+        background: linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3)), url(../images/img5.jpg);
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        width: auto;
+        position: absolute;
+        z-index: -1;
+    }
+    50%,60%{
+        background: linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3)), url(../images/img6.jpg);
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        width: auto;
+        position: absolute;
+        z-index: -1;
+    }
+    70%,80%{
+        background: linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3)), url(../images/img7.jpg);
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        width: auto;
+        position: absolute;
+        z-index: -1;
+    }
+    90%{
+        background: linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3)), url(../images/img4.jpg);
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        width: auto;
+        position: absolute;
+        z-index: -1;
+    }
+}
+.head{
+    top: 55%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-40%);
+}
+.head h1{
+    white-space: nowrap;
+    font-size: 55px;
+    text-decoration: underline;
+    text-decoration-color: rgb(0, 0, 0);
+    font-weight: bold;
+    text-shadow: 2px 0px 20px rgb(255, 255, 255);
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    margin-bottom:15px;
+}
+.head h3{
+
+    font-size: 20px;
+    text-shadow: 2px 2px 5px black;
+    font-weight: bold;
+    color: rgb(255, 251, 0);
+    margin-bottom:35px;
+
+}
+
+.head a{
+    text-decoration: none;
+    padding: 15px 25px;
+    border: 2px solid rgb(255, 255, 255);
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    transition: 0.5s ease;
+    font-weight: bold;
+    background: black;
+}
+.navbar-dark .navbar-toggler {
+    color: rgb(255, 255, 255);
+    border-color: rgba(255, 255, 255, 0.808);
+  }
+.head a:hover{
+    background: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    border: 2px solid rgb(0, 0, 0);
+    text-decoration: none;
+}
+
+footer{
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+    color: white;
+    background: linear-gradient(rgba(0, 0, 0, 0.671),rgba(0, 0, 0, 0.678),rgba(0, 0, 0, 0.671));
+    border: 2px solid white;
+    padding: 5px 10px;
+    padding-bottom: 0;
+    box-shadow: 2px 0 20px rgb(0, 0, 0);
+    
+}
+
+
+footer h1{
+    font-size: 40px;
+    text-decoration: underline;
+    text-decoration-color: rgb(255, 0, 0);
+}
+
+
+nav{
+    background: linear-gradient(rgba(0, 0, 0, 0.671),rgba(0, 0, 0, 0.678),rgba(0, 0, 0, 0.671));
+    border: 2px solid white;
+    margin-bottom: 3rem
+}
+
+.navbar-nav a{
+    display: block;
+    padding: 0.4rem 1.0rem;
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    transition: 0.5s ease;
+    margin-right: 20px;
+    border: 2px solid white transparent;
+    border-radius: 5px;
+
+}
+
+.navbar-nav a i, footer i{
+    font-size: 22px;
+}
+
+.navbar-nav a:hover{
+    color: black;
+    background: white;
+    text-decoration: none;
+
+}
+
+@media screen and (max-width : 800px){
+    .head h1{
+        font-size: 6vw;
+    }
+    .head h3{
+        font-size: 4vw;
+    }
+
+    .navbar-nav{
+        margin-right: 40px;
+        margin-left: 40px;
+    }
+    .navbar-nav a{
+        border-radius: 0;
+    }
+   .link{
+       margin-top: 15px;
+   }
+
+}

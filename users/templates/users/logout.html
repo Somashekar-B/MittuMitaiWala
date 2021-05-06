@@ -1,0 +1,18 @@
+{% extends "store/base.html" %}
+{% load crispy_forms_tags %}
+{%block content%}
+    <div class="container">
+        <div class="content-section">
+
+            <h2 class="alert alert-danger">You have been logged Out</h2>
+
+            <div class="border-top pt-4 mb-4">
+
+                    <a class="ml-2 px-3 py-2 btn btn-info" href="{% url 'login' %}">Login</a>
+                    <a class="ml-4 px-3 py-2 btn btn-warning" href="{% url 'store-home' %}">Return Home</a>
+
+            </div>
+        </div>
+    </div>
+
+{%endblock content%}

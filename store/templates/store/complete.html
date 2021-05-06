@@ -1,0 +1,233 @@
+{% extends 'store/base.html' %}
+{% load crispy_forms_tags %}
+{%block content%}
+
+<div class="content-section">
+    <!-- View Part -->
+    <div class="content">
+              <a href="{% url 'store-ghee' request.session.oil %}"style="float:right">
+                                <button  class="btn btn-dark"> << Back</button>
+                            </a>
+            <fieldset>
+                {% if count %}
+                <legend>Requested Combination of product already exists in Cart</legend>
+                <a href="{% url 'user-cart' %}">
+                        <button class="btn btn-success">Check Out Cart<i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+                    </a>
+                {% else %}
+                <div class="border-bottom pb-2">
+                    <legend>Your Final Product is Ready..!</legend>
+
+                </div>
+
+                <div class="views form-group row my-4 mx-2">
+                    <div class="item col-lg-12 p-4 mb-3">
+                        <div class="img">
+                            <img src="{{ image }}" class="mb-2">
+                        </div>
+                        <div class="details ml-3">
+                            <h4>{{sweet}}</h4>
+                            <hr>
+                            <p style="color:red;white-space: nowrap"><b>Category :</b> {{cat}}</p>
+                                <p style="color:blue"><b>Oil :</b> {{oil}}</p>
+                                <p style="color:green"><b>Ghee :</b> {{ghee}}</p>
+                            <h5>Rs. {{total}} <small class="text-muted">per kilo</small></h5>
+                            <div  class="text-muted">
+                                <small>
+                                    <p>Only Cash On Delivary</p>
+                                </small>
+                            </div>
+                           <div class="routes">
+                            <form method="get" action="{% url 'add-cart' %}">
+                                <input type="number" name="qty" value="1"/>
+                                <button class="btn btn-success" type="submit">Add To Cart <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                            </form>
+
+                           </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                {% endif %}
+            </fieldset>
+
+    </div>
+
+
+</div>
+<br>
+
+
+<style>
+   legend a button{
+        padding: 2px 20px;
+        color: black;
+        border: 2px solid black;
+    }
+
+   legend a button:hover{
+        color: white;
+        background: blue;
+    }
+    .item a, item a:hover{
+        color:black;
+        text-decoration:none
+    }
+    .content-section{
+        display: flex;
+    }
+    .content{
+        flex: 7;
+        margin: 10px 20px;
+        background: white;
+    }
+
+    .item{
+        line-height:15px;
+        align-items:center
+    }
+
+    .item img{
+        width: 100px;
+        height: 150px;
+        margin-right: 40px;
+    }
+    .item img:hover{
+        box-shadow: 2px 0 10px black;
+    }
+    .operations{
+        flex: 2;
+        margin: 10px 20px;
+        margin-right:0;
+        min-width: 250px;
+    }
+
+    .sidenav {
+        box-shadow: 2px 0 20px black;
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 7%;
+  left: 0;
+  background-color: rgb(43, 43, 43);
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 80px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #ececee;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #eeff00;
+  text-shadow: 2px 2px 5px rgb(0, 0, 0);
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+span i{
+    padding: 3px 10px;
+    border: 1px solid black;
+}
+.navi{
+    margin-top:10px;
+    display: none;
+    z-index: 10;
+}
+    h4{
+        font-size: 1.5em;
+    }
+    p{
+        font-size:1em
+    }
+
+.active{
+    background: blue;
+    color: white;
+}
+.routes {
+    display:flex;
+    white-space:nowrap;
+}
+.routes a{
+    margin-right:20px;
+}
+
+@media screen and (max-width:800px){
+        .content-section{
+            display: block;
+        }
+        .sidenav {padding-top: 15px;}
+        .sidenav a {font-size: 18px;}
+        .navi{
+            display: block;
+        }
+        .operations{
+            display: none;
+        }
+        .media{
+            display: block;
+        }
+        .profile{
+             margin-top:40px;
+        }
+        .item img{
+            width: 20vw;
+            height: 30vw;
+            margin-right: 20px;
+        }
+        .content{
+            margin:0px;
+            margin-top:30px
+        }
+        a{
+            display: block;
+            margin-bottom: 10px;
+        }
+}
+
+
+@media screen and (max-width:450px){
+    h4{
+        font-size: 1.5em;
+    }
+    p{
+        font-size:1em
+    }
+    h6{
+        font-size: 15px;
+        white-space: nowrap
+    }
+
+    form{
+        white-space:nowrap
+    }
+
+    .item img:hover{
+        box-shadow: none;
+    }
+    legend a{
+        display:none;
+    }
+
+}
+</style>
+
+
+{%endblock content%}
+

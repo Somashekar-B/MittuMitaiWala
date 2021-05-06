@@ -1,0 +1,42 @@
+{% extends "store/base.html" %}
+{% load crispy_forms_tags %}
+{%block content%}
+
+    <div class="container">
+        <div class="content-section">
+            <div class="profile">
+            <div class="media">
+                <img class="rounded-circle account-img" src="{{user.profile.image.url}}">
+                <hr>
+                <div class="media-body ml-0">
+                    <h2 class="account-heading">{{user.username}}</h2>
+                    <p class="text-secondary">{{user.email}}</p>
+                </div>
+                <a class="btn btn-secondary" href="{% url 'user-orders' %}">My Orders</a>
+            </div>
+             <form method="post" enctype="multipart/form-data">
+                {%csrf_token%}
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">Profile Info</legend>
+                    {{u_form|crispy}}
+                    {{p_form|crispy}}
+
+                    <button class="btn btn-danger"><a href="{% url 'password_reset' %}">change Password</a></button>
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn btn-outline-info" type="submit">Update</button>
+                </div>
+            </form>
+            </div>
+        </div>
+        <br>
+    </div>
+
+<style>
+    a,a:hover{
+        color: white;
+    }
+</style>
+
+{%endblock content%}
+

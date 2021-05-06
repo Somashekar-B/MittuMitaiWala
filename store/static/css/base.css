@@ -1,0 +1,67 @@
+*{
+    font-family: Calibri
+}
+body{
+    background: linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3)), url(../images/img1.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    width: auto;
+}
+
+label,legend,.text-muted{
+    color: black;
+}
+
+.content-section{
+    padding: 10px 20px;
+    background: white;
+    box-shadow: 2px 0 20px black;
+    height: 100%;
+}
+
+nav{
+    background: linear-gradient(rgba(0, 0, 0, 0.671),rgba(0, 0, 0, 0.678),rgba(0, 0, 0, 0.671));
+    border: 2px solid white;
+    z-index : 1023;
+}
+
+.about{
+    font-family: 'Comic Sans MS';
+    padding: 20px 70px;
+}
+
+.navbar-nav a{
+    display: block;
+    padding: 0.4rem 1.0rem;
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    transition: 0.5s ease;
+    margin-right: 20px;
+    border: 2px solid white transparent;
+    border-radius: 5px;
+}
+
+.navbar-nav a i, footer i{
+    font-size: 22px;
+}
+
+.navbar-nav a:hover{
+    color: black;
+    background: white;
+    text-decoration: none;
+
+}
+
+@media screen and (max-width : 800px){
+    .navbar-nav{
+        margin-right: 40px;
+        margin-left: 40px;
+    }
+    .navbar-nav a{
+        border-radius: 0;
+    }
+
+}
+

@@ -1,0 +1,163 @@
+{% extends 'store/base.html' %}
+{% load crispy_forms_tags %}
+{%block content%}
+
+    <div class="content-section py-2">
+        <!-- View Part -->
+        <div class="content">
+            <fieldset>
+                <div class="border-bottom pb-2">
+                    {% if count %}
+                    <legend class="text-center text-danger">You Have not ordered anything    <a href="{% url 'store-type' %}" style="float:right">
+                <button class="btn btn-dark"> << Back</button>
+            </a></legend>
+                    {% else %}
+                    <legend class="text-center">Order Summary    <a href="{% url 'store-type' %}" style="float:right">
+                <button class="btn btn-dark"> << Back</button>
+            </a></legend>
+                </div>
+
+                <div class="views form-group my-4 col-lg-12">
+                    <table class="table table-striped table-responsive-xl table-bordered ">
+                        <thead class=" text-center">
+                        <th>Image</th>
+                        <th>Item</th>
+                        <th>Quantity <small>in Kg</small></th>
+                        <th>Price</th>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Total : {{total}}</td>
+
+                        </tr>
+                        </tfoot>
+                    {% for item in products %}
+                        <tr>
+                            <td><img src="{{item.image.url}}"></td>
+                            <td>
+                                {{item.sweet_name}}<br>
+                                Category : {{item.category}}<br>
+                                Oil : {{item.oil_type}}<br>
+                                Ghee : {{item.ghee_type}}<br>
+                            </td>
+                            <td>{{item.quantity}}</td>
+                            <td>{{item.amount}}</td>
+                        </tr>
+                    {% endfor %}
+                     </table>
+                    <hr>
+                    <legend>Shipping Address</legend>
+                    <address>
+                           <p> {{address.first_name}} {{address.last_name}},<br>
+                            {{address.address_line_1}},<br>
+                            {{address.address_line_2}},<br>
+                            near {{address.landmark}},<br>
+                            {{address.city}},<br>
+                            {{address.pincode}},<br>
+                            phone : {{address.phone}}<br>
+                        </p>
+                    </address>
+
+                    <h6><strong>Total Amount to be paid {{total}}</strong> <div class="text-muted">Inc of all taxes</div><br>
+                        <b>Mode of Payment :</b> Cash On Delivary</h6>
+
+
+                    {% endif %}
+                </div>
+
+            </fieldset>
+
+
+        </div>
+
+    <div class="routes text-center">
+        <a href="{% url 'set-values' %}">
+            <button class="btn btn-success">Complete Order</button>
+        </a>
+    </div>
+    </div>
+
+<br>
+
+
+
+<style>
+    .body{
+        background: white;
+    }
+
+   a button{
+        color: purple;
+        padding: 10px 20px;
+        border: 2px solid purple;
+        transition:0.3s ease;
+    }
+
+    a button:hover{
+        color: white;
+        background: purple;
+    }
+   legend a button{
+
+        color: black;
+        border: 2px solid black;
+    }
+
+   legend a button:hover{
+        color: white;
+        background: blue;
+    }
+    .item a, item a:hover{
+        color:black;
+        text-decoration:none
+    }
+    .content-section{
+        display: block;
+        box-shadow:none;
+    }
+    .content{
+        margin:0px;
+        background: white;
+    }
+
+    .table img{
+        width: 100px;
+        height: 150px;
+        margin-right: 40px;
+
+    }
+    .table img:hover{
+        box-shadow: 2px 0 10px black;
+    }
+
+span i{
+    padding: 3px 10px;
+    border: 1px solid black;
+}
+
+.active{
+    background: blue;
+    color: white;
+}
+
+@media screen and (max-width:600px){
+    .content-section a{
+        display:none;
+    }
+    .routes a{
+        display:block
+    }
+    .content-section{
+        padding:0px;
+
+    }
+}
+
+</style>
+
+
+{%endblock content%}
+

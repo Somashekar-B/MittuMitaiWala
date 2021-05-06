@@ -1,0 +1,320 @@
+{% extends 'store/admin_pages_base.html' %}
+{% load crispy_forms_tags %}
+{%block content%}
+<div class="operations">
+        <div class="list-group list-group-flush">
+            <a href="{% url 'profile' %}" class="list-group-item list-group-item-action">Profile</a>
+            <a href="{% url 'new-type' %}" class="list-group-item list-group-item-action">Add New Sweet Type</a>
+            <a href="{% url 'new-sweet' %}" class="list-group-item list-group-item-action">Add New Sweet</a>
+            <a href="{% url 'new-oil' %}" class="list-group-item list-group-item-action">Add New Oil Type</a>
+            <a href="{% url 'new-ghee' %}" class="list-group-item list-group-item-action">Add New Ghee Type</a>
+
+            <div class="btn-group dropright">
+                <button type="button" class="btn">
+                    View Items
+                </button>
+                <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                    <span class="sr-only">Toggle Dropright</span>
+                </button>
+                <div class="dropdown-menu">
+                    <a class="list-group-item-action dropdown-item" href="{% url 'type-all' %}">Sweet Types</a>
+                    <a class="list-group-item-action dropdown-item" href="{% url 'sweet-all' %}">Sweets</a>
+                    <a class="list-group-item-action dropdown-item" href="{% url 'oil-all' %}">Oil Types</a>
+                    <a class="list-group-item-action dropdown-item" href="{% url 'ghee-all' %}">Ghee Types</a>
+                    <a class="list-group-item-action dropdown-item active" href="{% url 'items-all' %}">All Items</a>
+                </div>
+            </div>
+            <a href="{% url 'items-table' %}" class="list-group-item list-group-item-action">Items Table</a>
+            <a href="{% url 'due-list' %}" class="list-group-item list-group-item-action">Due Orders</a>
+            <a href="{% url 'deliver-list' %}" class="list-group-item list-group-item-action">Delivered Orders</a>
+            <a href="{% url 'cancelled-orders' %}" class="list-group-item list-group-item-action">Cancelled Orders</a>
+        </div>
+    </div>
+    <div class="content">
+
+        <fieldset>
+            <legend class="border-bottom pb-2 text-center">Available Sweet Categories</legend>
+
+            <div class="views form-group row my-4 mx-2">
+                {% for item in type %}
+                <div class="item col-lg-6 pb-2 border-bottom mb-2">
+                    <div class="img">
+                        <a href="{% url 'sweet-cat' item.slug %}"><img src="{{ item.image.url }}"></a>
+                    </div>
+                    <div class="details ml-3">
+                        <a href="{% url 'sweet-cat' item.slug %}"><h4>{{item.sweet_name}}</h4></a>
+                        <p style="color:red;white-space: nowrap;"> {{item.varieties}} varieties available</p>
+                        <div class="text-muted">
+                            <small>
+                                <p>Added On : {{item.date | date:"F d, Y"}}</p>
+                                <p>Only Cash On Delivary</p>
+                            </small>
+                        </div>
+                        <div class="routes">
+                            <a href="{% url 'type-update' item.slug %}">
+                                <button>Update</button>
+                            </a>
+                            <a href="{% url 'sweet-cat' item.slug %}" class="sec">
+                                <button>Browse >></button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+        </fieldset>
+
+        <fieldset>
+            <legend class="border-bottom pb-3 text-center">Available Sweets</legend>
+
+            <div class="views form-group row my-4 mx-2">
+                {% for item in sweets %}
+                <div class="item col-lg-6 p-4 border-bottom mb-3">
+                    <div class="img">
+                        <img src="{{ item.image.url }}" class="mb-2">
+                    </div>
+                    <div class="details ml-3">
+                        <h4>{{item.type_name}}</h4>
+                        <h5>Sweet Category : {{item.sweet_category}}</h5>
+                        <h5>Rs. {{item.base_price_per_kilo}}
+                            <small class="text-muted">per kilo</small>
+                        </h5>
+                        <div class="text-muted">
+                            <small>
+                                <p>Added On : {{item.date | date:"F d, Y"}}</p>
+                                <p>Only Cash On Delivary</p>
+                            </small>
+                        </div>
+                        <div class="routes">
+                            <a href="{% url 'sweet-update' item.id %}">
+                                <button>Update</button>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+        </fieldset>
+
+        <fieldset>
+            <legend class="border-bottom pb-3 text-center">Available Oil Categories</legend>
+
+
+            <div class="views form-group row my-4 mx-2">
+                {% for item in oils %}
+                <div class="item col-lg-6 p-4 border-bottom mb-3">
+                    <div class="img">
+                        <img src="{{ item.image.url }}" class="mb-2">
+                    </div>
+                    <div class="details ml-3">
+                        <h4>{{item.oil_name}}</h4>
+                        <h5>+ Rs. {{item.add_on_per_kilo}}
+                            <small class="text-muted">per kilo</small>
+                        </h5>
+                        <div class="text-muted">
+                            <small>
+                                <p>Added On : {{item.date | date:"F d, Y"}}</p>
+                                <p>Only Cash On Delivary</p>
+                            </small>
+                        </div>
+                        <div class="routes">
+                            <a href="{% url 'sweet-update' item.id %}">
+                                <button>Update</button>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+        </fieldset>
+
+        <fieldset>
+            <legend class="border-bottom pb-3 text-center">Available Ghee Categories</legend>
+
+
+            <div class="views form-group row my-4 mx-2">
+                {% for item in ghee %}
+                <div class="item col-lg-6 p-4 border-bottom mb-3">
+                    <div class="img">
+                        <img src="{{ item.image.url }}" class="mb-2">
+                    </div>
+                    <div class="details ml-3">
+                        <h4>{{item.ghee_name}}</h4>
+                        <h5>+ Rs. {{item.add_on_per_kilo}}
+                            <small class="text-muted">per kilo</small>
+                        </h5>
+                        <div class="text-muted">
+                            <small>
+                                <p>Added On : {{item.date | date:"F d, Y"}}</p>
+                                <p>Only Cash On Delivary</p>
+                            </small>
+                        </div>
+                        <div class="routes">
+                            <a href="{% url 'sweet-update' item.id %}">
+                                <button>Update</button>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </fieldset>
+        <div class="paging">
+            {% if is_paginated %}
+
+            {% if pages.has_previous %}
+            <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+            <a class="btn btn-outline-info mb-4" href="?page={{ pages.previous_page_number }}">Previous</a>
+            {% endif %}
+
+            {% for num in pages.paginator.page_range %}
+            {% if pages.number == num %}
+            <a class="btn btn-outline-info mb-4" href="?page={{num}}">{{num}}</a>
+            {% elif num > pages.number|add:'-3' and num < pages.number|add:'3' %}
+            <a class="btn btn-outline-info mb-4" href="?page={{num}}">{{num}}</a>
+            {% endif %}
+            {%endfor%}
+
+            {% if pages.has_next %}
+            <a class="btn btn-outline-info mb-4" href="?page={{pages.next_page_number}}">Next</a>
+            <a class="btn btn-outline-info mb-4" href="?page={{ pages.paginator.num_pages }}">Last</a>
+            {% endif %}
+
+            {% endif %}
+        </div>
+    </div>
+
+<br>
+
+
+<style>
+   a button{
+        color: purple;
+        padding: 10px 20px;
+        border: 2px solid purple;
+        transition:0.3s ease;
+    }
+
+    a button:hover{
+        color: white;
+        background: purple;
+    }
+    .item a, item a:hover{
+        color:black;
+        text-decoration:none
+    }
+    .content-section{
+        display: flex;
+    }
+    .content{
+        flex: 7;
+        margin: 10px 20px;
+        background: white;
+    }
+
+    .item{
+        display:flex;
+        line-height:15px;
+        align-items:center
+    }
+
+    .item img{
+        width: 100px;
+        height: 150px;
+        margin-right: 40px;
+
+    }
+    .item img:hover{
+        box-shadow: 2px 0 10px black;
+    }
+
+span i{
+    padding: 3px 10px;
+    border: 1px solid black;
+}
+.navi{
+    margin-top:10px;
+    display: none;
+    z-index: 10;
+}
+
+.active{
+    background: blue;
+    color: white;
+}
+
+
+@media screen and (max-width:800px){
+        .content-section{
+            display: block;
+        }
+        .sidenav {padding-top: 15px;}
+        .sidenav a {font-size: 18px;}
+        .navi{
+            display: block;
+        }
+        .operations{
+            display: none;
+        }
+        .media{
+            display: block;
+        }
+        .profile{
+             margin-top:40px;
+        }
+        .item img{
+            width: 20vw;
+            height: 30vw;
+            margin-right: 20px;
+        }
+        .content{
+            margin:0px;
+            margin-top:30px
+        }
+        a{
+            display: block;
+            margin-bottom: 10px;
+        }
+        .btn-group{
+            color:white;
+            margin: 8px 8px 8px 32px;
+        }
+        .dropdown-menu{
+            background-color: rgb(43, 43, 43);
+        }
+}
+
+@media screen and (max-width:450px){
+    h4{
+        font-size: 15px;
+    }
+    p{
+        font-size:10px
+    }
+    .item{
+        line-height: 2px
+    }
+    .sec{
+        display:none;
+    }
+    .item img:hover{
+        box-shadow: none;
+    }
+    legend a{
+        display:none;
+    }
+
+}
+
+</style>
+
+
+{%endblock content%}
+

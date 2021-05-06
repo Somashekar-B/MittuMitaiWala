@@ -1,0 +1,94 @@
+
+.media{
+    display: flex;
+    padding-bottom: 10px;
+}
+.media img{
+    border: 2px solid maroon;
+    width: 120px;
+    height: 120px;
+    margin-right: 20px
+}
+    .content-section{
+        display: flex;
+    }
+    .profile{
+        flex: 7;
+        margin: 10px 20px;
+        background: white;
+        box-shadow: 2px 0px 15px black;
+        padding: 10px 20px;
+    }
+    .operations{
+        flex: 2;
+        margin: 10px 20px;
+        min-width: 250px;
+    }
+
+    .sidenav {
+        box-shadow: 2px 0 20px black;
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 7%;
+  left: 0;
+  background-color: rgb(43, 43, 43);
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 80px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  border-bottom:1px solid grey;
+  padding-bottom:16px;
+  margin-bottom:8px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #ececee;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #eeff00;
+  text-shadow: 2px 2px 5px rgb(0, 0, 0);
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-width:800px){
+.content-section{
+            display: block;
+        }
+        .sidenav {padding-top: 15px;}
+        .sidenav a {font-size: 18px;}
+
+        .navi{
+            display: block;
+        }
+        .operations{
+            display: none;
+        }
+        .media{
+            display: block;
+        }
+        .profile{
+             margin-top:40px;
+        }
+
+        .btn-group{
+            color:white;
+            margin: 8px 8px 8px 32px;
+        }
+        .dropdown-menu{
+            background-color: rgb(43, 43, 43);
+        }}
+

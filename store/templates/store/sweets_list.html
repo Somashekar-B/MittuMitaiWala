@@ -1,0 +1,220 @@
+{% extends 'store/admin_pages_base.html' %}
+{% load crispy_forms_tags %}
+{%block content%}
+<div class="operations">
+        <div class="list-group list-group-flush">
+            <a href="{% url 'profile' %}" class="list-group-item list-group-item-action">Profile</a>
+            <a href="{% url 'new-type' %}" class="list-group-item list-group-item-action">Add New Sweet Type</a>
+            <a href="{% url 'new-sweet' %}" class="list-group-item list-group-item-action">Add New Sweet</a>
+            <a href="{% url 'new-oil' %}" class="list-group-item list-group-item-action">Add New Oil Type</a>
+            <a href="{% url 'new-ghee' %}" class="list-group-item list-group-item-action">Add New Ghee Type</a>
+
+            <div class="btn-group dropright">
+                <button type="button" class="btn">
+                    View Items
+                </button>
+                <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                    <span class="sr-only">Toggle Dropright</span>
+                </button>
+                <div class="dropdown-menu">
+                    <a class="list-group-item-action dropdown-item" href="{% url 'type-all' %}">Sweet Types</a>
+                    <a class="list-group-item-action dropdown-item active" href="{% url 'sweet-all' %}">Sweets</a>
+                    <a class="list-group-item-action dropdown-item" href="{% url 'oil-all' %}">Oil Types</a>
+                    <a class="list-group-item-action dropdown-item" href="{% url 'ghee-all' %}">Ghee Types</a>
+                    <a class="list-group-item-action dropdown-item" href="{% url 'items-all' %}">All Items</a>
+                </div>
+            </div>
+            <a href="{% url 'items-table' %}" class="list-group-item list-group-item-action">Items Table</a>
+            <a href="{% url 'due-list' %}" class="list-group-item list-group-item-action">Due Orders</a>
+            <a href="{% url 'deliver-list' %}" class="list-group-item list-group-item-action">Delivered Orders</a>
+            <a href="{% url 'cancelled-orders' %}" class="list-group-item list-group-item-action">Cancelled Orders</a>
+        </div>
+    </div>
+    <!-- View Part -->
+    <div class="content">
+
+            <fieldset>
+                <legend class="border-bottom pb-3 text-center">Available Sweets</legend>
+
+                <div class="views form-group row my-4 mx-2">
+                    {% for item in sweets %}
+                    <div class="item col-lg-12 p-4 border-bottom mb-3">
+                        <div class="img">
+                            <img src="{{ item.image.url }}" class="mb-2">
+                        </div>
+                        <div class="details ml-3">
+                            <h4>{{item.type_name}}</h4>
+                            <small><h6 style="color:blue">Category : {{item.sweet_category}}</h6></small>
+                            <h5>Rs. {{item.base_price_per_kilo}} <small class="text-muted">per kilo</small></h5>
+                            <div  class="text-muted">
+                                <small>
+                                    <p>Added On : {{item.date | date:"F d, Y"}}</p>
+                                    <p>Only Cash On Delivary</p>
+                                </small>
+                            </div>
+                            <div class="routes">
+                                <a href="{% url 'sweet-update' item.id %}" class="btn btn-success">Update</a>
+                                <a href="{% url 'sweet-delete' item.slug %}" class="btn btn-delete">Delete</a>
+
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+            </fieldset>
+        <div class="paging text-center">
+                {% if is_paginated %}
+
+                    {% if page_obj.has_previous %}
+                        <a class="btn btn-outline-info mb-4" href="?page=1"><< First</a>
+                        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">< Previous</a>
+                    {% endif %}
+
+                    {% for num in page_obj.paginator.page_range %}
+                        {% if page_obj.number == num %}
+                            <a class="btn btn-outline-info mb-4" href="?page={{num}}">{{num}}</a>
+                        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                            <a class="btn btn-outline-info mb-4" href="?page={{num}}">{{num}}</a>
+                        {% endif %}
+                    {%endfor%}
+
+                    {% if page_obj.has_next %}
+                        <a class="btn btn-outline-info mb-4" href="?page={{page_obj.next_page_number}}">Next ></a>
+                        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last >></a>
+                    {% endif %}
+
+                {% endif %}
+
+            </div>
+
+
+    </div>
+
+<style>
+   legend a button{
+        padding: 2px 20px;
+        color: black;
+        border: 2px solid black;
+    }
+
+   legend a button:hover{
+        color: white;
+        background: blue;
+    }
+
+    .content{
+        flex: 7;
+        margin: 10px 20px;
+        background: white;
+    }
+
+    .item{
+        display:flex;
+        line-height:15px;
+        align-items:center
+    }
+
+    .item img{
+        width: 100px;
+        height: 150px;
+        margin-right: 40px;
+
+    }
+    .item img:hover{
+        box-shadow: 2px 0 10px black;
+    }
+
+span i{
+    padding: 3px 10px;
+    border: 1px solid black;
+}
+.navi{
+    margin-top:10px;
+    display: none;
+    z-index: 10;
+}
+
+.active{
+    background: blue;
+    color: white;
+}
+
+
+@media screen and (max-width:800px){
+        .content-section{
+            display: block;
+        }
+        .sidenav {padding-top: 15px;}
+        .sidenav a {font-size: 18px;}
+        .navi{
+            display: block;
+        }
+        .operations{
+            display: none;
+        }
+        .media{
+            display: block;
+        }
+        .profile{
+             margin-top:40px;
+        }
+        .item img{
+            width: 20vw;
+            height: 30vw;
+            margin-right: 20px;
+        }
+        .content{
+            margin: 0;
+            margin-top:30px
+        }
+        a{
+            display: block;
+            margin-bottom: 10px;
+        }
+        .btn-group{
+            color:white;
+            margin: 8px 8px 8px 32px;
+        }
+        .dropdown-menu{
+            background-color: rgb(43, 43, 43);
+        }
+}
+
+@media screen and (max-width:450px){
+    h4{
+        font-size: 20px;
+    }
+    h6{
+        font-size: 15px;
+        white-space: nowrap
+    }
+    p{
+        font-size:10px
+    }
+    .item{
+        line-height: 2px
+    }
+    .sec{
+        display:none;
+    }
+    .item img:hover{
+        box-shadow: none;
+    }
+    legend a{
+        display:none;
+    }
+
+    .item img{
+            width: 20vw;
+            height: 30vw;
+            margin: 10px;
+        }
+
+}
+</style>
+
+
+{%endblock content%}
+

@@ -1,0 +1,197 @@
+{% extends 'store/admin_pages_base.html' %}
+{% load crispy_forms_tags %}
+
+{%block content%}
+<div class="operations">
+        <div class="list-group list-group-flush">
+            <a href="{% url 'profile' %}" class="list-group-item list-group-item-action">Profile</a>
+            <a href="{% url 'new-type' %}" class="list-group-item list-group-item-action">Add New Sweet Type</a>
+            <a href="{% url 'new-sweet' %}" class="list-group-item list-group-item-action">Add New Sweet</a>
+            <a href="{% url 'new-oil' %}" class="list-group-item list-group-item-action">Add New Oil Type</a>
+            <a href="{% url 'new-ghee' %}" class="list-group-item list-group-item-action">Add New Ghee Type</a>
+
+            <div class="btn-group dropright">
+                <button type="button" class="btn">
+                    View Items
+                </button>
+                <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                    <span class="sr-only">Toggle Dropright</span>
+                </button>
+                <div class="dropdown-menu">
+                    <a class="list-group-item-action dropdown-item" href="{% url 'type-all' %}">Sweet Types</a>
+                    <a class="list-group-item-action dropdown-item" href="{% url 'sweet-all' %}">Sweets</a>
+                    <a class="list-group-item-action dropdown-item" href="{% url 'oil-all' %}">Oil Types</a>
+                    <a class="list-group-item-action dropdown-item" href="{% url 'ghee-all' %}">Ghee Types</a>
+                    <a class="list-group-item-action dropdown-item" href="{% url 'items-all' %}">All Items</a>
+                </div>
+            </div>
+            <a href="{% url 'items-table' %}" class="list-group-item list-group-item-action active">Items Table</a>
+            <a href="{% url 'due-list' %}" class="list-group-item list-group-item-action">Due Orders</a>
+            <a href="{% url 'deliver-list' %}" class="list-group-item list-group-item-action">Delivered Orders</a>
+            <a href="{% url 'cancelled-orders' %}" class="list-group-item list-group-item-action">Cancelled Orders</a>
+        </div>
+    </div>
+    <!-- Profile Part -->
+    <div class="content">
+        <table class="table text-center table-responsive-xl">
+            <legend class="text-center">Available Sweet Categories</legend>
+        <thead>
+            <th>Image</th>
+            <th>Item Name</th>
+            <th>Available Varieties</th>
+            <th colspan="3">Opertions</th>
+        </thead>
+            <tbody>
+            {% for item in type %}
+                <tr>
+                    <td><img src="{{item.image.url}}" /></td>
+                    <td>{{item.sweet_name}}</td>
+                    <td>{{item.varieties}}</td>
+                    <td><a class="btn btn-info" href="{% url 'type-update' item.slug %}">Update</a></td>
+                    <td><a class="btn btn-success" href="{% url 'sweet-cat' item.slug %}">Browse</a></td>
+                    <td><a class="btn btn-danger" href="{% url 'type-delete' item.slug %}">Delete Item</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <hr>
+        <br>
+        <table class="table text-center table-responsive-xl">
+            <legend class="text-center">Available Sweets</legend>
+        <thead>
+            <th>Image</th>
+            <th>Sweet Name</th>
+            <th>Price per kilo</th>
+            <th colspan="2">Opertions</th>
+        </thead>
+            <tbody>
+            {% for item in sweets %}
+                <tr>
+                    <td><img src="{{item.image.url}}" /></td>
+                    <td>{{item.type_name}}</td>
+                    <td>{{item.base_price_per_kilo}}</td>
+                    <td><a class="btn btn-info" href="{% url 'sweet-update' item.id %}">Update</a></td>
+                    <td><a class="btn btn-danger" href="{% url 'sweet-delete' item.slug %}">Delete Item</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <hr>
+        <br>
+        <table class="table text-center table-responsive-xl">
+            <legend class="text-center">Available Oil Categories</legend>
+        <thead>
+            <th>Image</th>
+            <th>Oil Name</th>
+            <th>Add On per kilo</th>
+            <th colspan="2">Opertions</th>
+        </thead>
+            <tbody>
+            {% for item in oils %}
+                <tr>
+                    <td><img src="{{item.image.url}}" /></td>
+                    <td>{{item.oil_name}}</td>
+                    <td>{{item.add_on_per_kilo}}</td>
+                    <td><a class="btn btn-info" href="{% url 'oil-update' item.id %}">Update</a></td>
+                    <td><a class="btn btn-danger" href="{% url 'oil-delete' item.slug %}">Delete Item</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <hr>
+        <br>
+        <table class="table text-center table-responsive-xl">
+            <legend class="text-center">Available Ghee Categories</legend>
+        <thead>
+            <th>Image</th>
+            <th>Ghee Name</th>
+            <th>Add On per kilo</th>
+            <th colspan="2">Opertions</th>
+        </thead>
+            <tbody>
+            {% for item in ghee %}
+                <tr>
+                    <td><img src="{{item.image.url}}" /></td>
+                    <td>{{item.ghee_name}}</td>
+                    <td>{{item.add_on_per_kilo}}</td>
+                    <td><a class="btn btn-info" href="{% url 'ghee-update' item.id %}">Update</a></td>
+                    <td><a class="btn btn-danger" href="{% url 'ghee-delete' item.slug %}">Delete Item</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+<style>
+   button a,button a:hover{
+        color: white;
+    }
+    legend{
+        color:purple;
+        text-decoration:underline;
+        text-decoration-style:black;
+        font-weight:bold;
+    }
+    .content{
+        flex: 7;
+        margin: 10px 20px;
+        background: white;
+    }
+
+span i{
+    padding: 3px 10px;
+    border: 1px solid black;
+}
+.navi{
+    margin-top:40px;
+    display: none;
+    z-index: 10;
+}
+img{
+      width: 100px;
+      height: 100px;
+      margin-right: 20px;
+}
+
+.active{
+    background: blue;
+    color: white;
+}
+    
+@media screen and (max-width:800px){
+        .content-section{
+            display: block;
+        }
+        .sidenav {padding-top: 15px;}
+        .sidenav a {font-size: 18px;}
+        .navi{
+            display: block;
+        }
+        .operations{
+            display: none;
+        }
+        .media{
+            display: block;
+        }
+        .profile{
+             margin-top:40px;
+        }
+
+        .btn-group{
+            color:white;
+            margin: 8px 8px 8px 32px;
+        }
+        .dropdown-menu{
+            background-color: rgb(43, 43, 43);
+        }
+
+}
+
+
+
+</style>
+
+
+{%endblock content%}
+

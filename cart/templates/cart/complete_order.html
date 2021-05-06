@@ -1,0 +1,33 @@
+{% extends 'store/base.html' %}
+{% load crispy_forms_tags %}
+{%block content%}
+
+<div class="content-section py-2">
+    <a href="{% url 'store-home' %}" style="float:right">
+            <button class="btn btn-success">Return Home</button>
+        </a>
+    <!-- View Part -->
+    <div class="content text-center">
+        <h3>---Thank You Shopping With Us---</h3>
+        <h5 style="color:blue">Your Order Id : {{order_id}}</h5>
+        <p>Your order will be delivered as soon as possible</p>
+    </div>
+</div>
+
+<br>
+
+
+<style>
+    .content-section{
+        display: block;
+        box-shadow:2px 0px 20px black;
+    }
+    .content{
+        padding:10px 20px;
+        background: white;
+    }
+</style>
+
+
+{%endblock content%}
+
