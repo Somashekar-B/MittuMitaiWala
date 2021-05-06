@@ -87,7 +87,6 @@ SQLAlchemy==1.3.19
 sqlparse==0.3.1
 tensorboard==1.9.0
 tensorboard-plugin-wit==1.6.0.post3
-tensorflow @ file:///C:/Users/HP/downloads/tensorflow-1.9.0-cp37-cp37m-win_amd64.whl
 tensorflow-cpu @ https://storage.googleapis.com/tensorflow/windows/cpu/tensorflow_cpu-2.2.0-cp37-cp37m-win_amd64.whl
 tensorflow-estimator==2.2.0
 termcolor==1.1.0
